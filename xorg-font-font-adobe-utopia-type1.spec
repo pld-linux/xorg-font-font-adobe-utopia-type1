@@ -11,7 +11,7 @@ URL:		http://xorg.freedesktop.org/
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	fontconfig
-BuildRequires:	pkgconfig >= 0.19
+BuildRequires:	pkgconfig >= 1:0.19
 BuildRequires:	xorg-app-bdftopcf
 BuildRequires:	xorg-app-mkfontdir
 BuildRequires:	xorg-app-mkfontscale
