@@ -1,22 +1,23 @@
 Summary:	adobe-utopia-type1 font
 Summary(pl):	Font adobe-utopia-type1
 Name:		xorg-font-font-adobe-utopia-type1
-Version:	0.99.0
-Release:	0.01
+Version:	0.99.1
+Release:	0.1
 License:	MIT
 Group:		Fonts
-Source0:	http://xorg.freedesktop.org/X11R7.0-RC0/font/font-adobe-utopia-type1-%{version}.tar.bz2
-# Source0-md5:	05e63b72340f34611de54db6940cb050
+Source0:	http://xorg.freedesktop.org/releases/X11R7.0-RC3/font/font-adobe-utopia-type1-%{version}.tar.bz2
+# Source0-md5:	1846b1add5c2bf610ba9606fb833cd6e
 URL:		http://xorg.freedesktop.org/
-BuildRequires:	autoconf
+BuildRequires:	autoconf >= 2.57
 BuildRequires:	automake
 BuildRequires:	fontconfig
 BuildRequires:	pkgconfig >= 1:0.19
-BuildRequires:	xorg-app-bdftopcf
+BuildRequires:	t1utils
 BuildRequires:	xorg-app-mkfontdir
 BuildRequires:	xorg-app-mkfontscale
-BuildRequires:	xorg-font-font-util
 BuildRequires:	xorg-util-util-macros
+Requires(post,postun):	fontpostinst
+Requires:	%{_fontsdir}/Type1
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -32,7 +33,8 @@ Font adobe-utopia-type1.
 %{__aclocal}
 %{__autoconf}
 %{__automake}
-%configure
+%configure \
+	--with-fontdir=%{_fontsdir}/Type1
 
 %{__make}
 
@@ -42,9 +44,28 @@ rm -rf $RPM_BUILD_ROOT
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
 
+# separate *.afm, convert *.pfa to .pfb
+cd $RPM_BUILD_ROOT%{_fontsdir}/Type1
+install -d afm
+mv -f *.afm afm
+for f in *.pfa ; do
+	t1binary $f `basename $f .pfa`.pfb
+	rm -f $f
+done
+mv -f fonts.scale fonts.scale.adobe-utopia
+
 %clean
 rm -rf $RPM_BUILD_ROOT
 
+%post
+fontpostinst Type1
+
+%postun
+fontpostinst Type1
+
 %files
 %defattr(644,root,root,755)
-%{_libdir}/X11/fonts/Type1/*
+%doc COPYING ChangeLog
+%{_fontsdir}/Type1/*.pfb
+%{_fontsdir}/Type1/afm/*.afm
+%{_fontsdir}/Type1/fonts.scale.adobe-utopia
