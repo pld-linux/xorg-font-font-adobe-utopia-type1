@@ -52,7 +52,8 @@ for f in *.pfa ; do
 	t1binary $f `basename $f .pfa`.pfb
 	rm -f $f
 done
-mv -f fonts.scale fonts.scale.adobe-utopia
+sed -e '1d;s/\.pfa /.pfb /' fonts.scale > fonts.scale.adobe-utopia
+rm -f fonts.scale fonts.dir fonts.cache-1
 
 %clean
 rm -rf $RPM_BUILD_ROOT
