@@ -1,12 +1,12 @@
 Summary:	adobe-utopia-type1 font
 Summary(pl):	Font adobe-utopia-type1
 Name:		xorg-font-font-adobe-utopia-type1
-Version:	0.99.1
+Version:	1.0.1
 Release:	0.1
 License:	MIT
 Group:		Fonts
-Source0:	http://xorg.freedesktop.org/releases/X11R7.0-RC3/font/font-adobe-utopia-type1-%{version}.tar.bz2
-# Source0-md5:	1846b1add5c2bf610ba9606fb833cd6e
+Source0:	http://xorg.freedesktop.org/releases/X11R7.0/src/font/font-adobe-utopia-type1-%{version}.tar.bz2
+# Source0-md5:	aa7ff4bd20b961afda9c15d103b972a5
 URL:		http://xorg.freedesktop.org/
 BuildRequires:	autoconf >= 2.57
 BuildRequires:	automake
@@ -66,7 +66,7 @@ fontpostinst Type1
 
 %files
 %defattr(644,root,root,755)
-%doc COPYING ChangeLog
+%doc COPYING ChangeLog README
 %{_fontsdir}/Type1/*.pfb
 %{_fontsdir}/Type1/afm/*.afm
 %{_fontsdir}/Type1/fonts.scale.adobe-utopia
