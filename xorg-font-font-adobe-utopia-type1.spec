@@ -1,11 +1,11 @@
-Summary:	adobe-utopia-type1 font
-Summary(pl.UTF-8):	Font adobe-utopia-type1
+Summary:	adobe-utopia Type1 font
+Summary(pl.UTF-8):	Font Type1 adobe-utopia
 Name:		xorg-font-font-adobe-utopia-type1
 Version:	1.0.1
-Release:	0.1
+Release:	1
 License:	distributable (see COPYING)
 Group:		Fonts
-Source0:	http://xorg.freedesktop.org/releases/X11R7.0/src/font/font-adobe-utopia-type1-%{version}.tar.bz2
+Source0:	http://xorg.freedesktop.org/releases/individual/font/font-adobe-utopia-type1-%{version}.tar.bz2
 # Source0-md5:	aa7ff4bd20b961afda9c15d103b972a5
 URL:		http://xorg.freedesktop.org/
 BuildRequires:	autoconf >= 2.57
@@ -20,10 +20,10 @@ Requires:	%{_fontsdir}/Type1
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
-adobe-utopia-type1 font.
+adobe-utopia Type1 font.
 
 %description -l pl.UTF-8
-Font adobe-utopia-type1.
+Font Type1 adobe-utopia.
 
 %prep
 %setup -q -n font-adobe-utopia-type1-%{version}
@@ -53,6 +53,12 @@ for f in *.pfa ; do
 done
 sed -e '1d;s/\.pfa /.pfb /' fonts.scale > fonts.scale.adobe-utopia
 rm -f fonts.scale fonts.dir fonts.cache-1
+cat > Fontmap.adobe-utopia <<EOF
+/Utopia-BoldItalic                       (UTBI____.pfb) ;
+/Utopia-Bold                             (UTB_____.pfb) ;
+/Utopia-Italic                           (UTI_____.pfb) ;
+/Utopia-Regular                          (UTRG____.pfb) ;
+EOF
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -69,3 +75,4 @@ fontpostinst Type1
 %{_fontsdir}/Type1/*.pfb
 %{_fontsdir}/Type1/afm/*.afm
 %{_fontsdir}/Type1/fonts.scale.adobe-utopia
+%{_fontsdir}/Type1/Fontmap.adobe-utopia
