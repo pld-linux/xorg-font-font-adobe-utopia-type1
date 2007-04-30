@@ -72,7 +72,7 @@ fontpostinst Type1
 %files
 %defattr(644,root,root,755)
 %doc COPYING ChangeLog README
-%{_fontsdir}/Type1/*.pfb
-%{_fontsdir}/Type1/afm/*.afm
+%{_fontsdir}/Type1/UT*.pfb
+%{_fontsdir}/Type1/afm/UT*.afm
 %{_fontsdir}/Type1/fonts.scale.adobe-utopia
 %{_fontsdir}/Type1/Fontmap.adobe-utopia
