@@ -1,5 +1,5 @@
-Summary:	adobe-utopia Type1 font
-Summary(pl.UTF-8):	Font Type1 adobe-utopia
+Summary:	Adobe Utopia Type1 font
+Summary(pl.UTF-8):	Font Type1 Adobe Utopia
 Name:		xorg-font-font-adobe-utopia-type1
 Version:	1.0.1
 Release:	1
@@ -20,10 +20,10 @@ Requires:	%{_fontsdir}/Type1
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
-adobe-utopia Type1 font.
+Adobe Utopia Type1 font.
 
 %description -l pl.UTF-8
-Font Type1 adobe-utopia.
+Font Type1 Adobe Utopia.
 
 %prep
 %setup -q -n font-adobe-utopia-type1-%{version}
