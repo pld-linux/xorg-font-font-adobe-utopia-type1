@@ -1,21 +1,23 @@
 Summary:	Adobe Utopia Type1 font
 Summary(pl.UTF-8):	Font Type1 Adobe Utopia
 Name:		xorg-font-font-adobe-utopia-type1
-Version:	1.0.4
-Release:	2
+Version:	1.0.5
+Release:	1
 License:	distributable (see COPYING)
 Group:		Fonts
-Source0:	http://xorg.freedesktop.org/releases/individual/font/font-adobe-utopia-type1-%{version}.tar.bz2
-# Source0-md5:	fcf24554c348df3c689b91596d7f9971
-URL:		http://xorg.freedesktop.org/
-BuildRequires:	autoconf >= 2.57
+Source0:	https://xorg.freedesktop.org/releases/individual/font/font-adobe-utopia-type1-%{version}.tar.xz
+# Source0-md5:	546d17feab30d4e3abcf332b454f58ed
+URL:		https://xorg.freedesktop.org/
+BuildRequires:	autoconf >= 2.60
 BuildRequires:	automake
 BuildRequires:	fontconfig
 BuildRequires:	t1utils
+BuildRequires:	tar >= 1:1.22
 BuildRequires:	xorg-app-mkfontdir
 BuildRequires:	xorg-app-mkfontscale
 BuildRequires:	xorg-font-font-util >= 1.2
-BuildRequires:	xorg-util-util-macros >= 1.3
+BuildRequires:	xorg-util-util-macros >= 1.20
+BuildRequires:	xz
 Requires(post,postun):	fontpostinst
 Requires:	%{_fontsdir}/Type1
 BuildArch:	noarch
@@ -35,8 +37,10 @@ Font Type1 Adobe Utopia.
 %{__autoconf}
 %{__automake}
 %configure \
+%if "%{_gnu}" != "-gnux32"
 	--build=%{_host} \
 	--host=%{_host} \
+%endif
 	--with-fontdir=%{_fontsdir}/Type1
 
 %{__make}
@@ -75,7 +79,7 @@ fontpostinst Type1
 
 %files
 %defattr(644,root,root,755)
-%doc COPYING ChangeLog README
+%doc COPYING ChangeLog README.md
 %{_fontsdir}/Type1/UT*.pfb
 %{_fontsdir}/Type1/afm/UT*.afm
 %{_fontsdir}/Type1/fonts.scale.adobe-utopia
